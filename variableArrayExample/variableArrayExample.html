@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="Variable Array Example" icon-name="custom:custom2">
+        <div class="slds-m-around_large">
+            <ul>
+                <li><b>Name : </b> {name} </li>
+                <li><b>Email : </b> {email} </li>
+                <li><b>Phone : </b> {phone} </li>
+            </ul>
+
+            <hr/>
+            
+            <b>Name : </b><lightning-formatted-text value={name}></lightning-formatted-text>
+            <br/>
+            <b>Eamil : </b><lightning-formatted-email value={email}></lightning-formatted-email>
+            <br/>
+            <b>Phone : </b><lightning-formatted-phone value={phone}></lightning-formatted-phone>
+        </div>
+    </lightning-card>
+</template>
