@@ -1,0 +1,26 @@
+<template>
+    <lightning-card title="Account List Example" icon-name="custom:custom8">
+        <div class="slds-m-around_large">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr>
+                        <th>Account Name</th>
+                        <th>Account Number</th>
+                        <th>Rating</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={accountList.data} for:item="account">
+                        <tr key={account}>
+                            <td>{account.Name}</td>
+                            <td>{account.AccountNumber}</td>
+                            <td>{account.Rating}</td>
+                            <td>{account.Email__C}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </lightning-card>
+</template>
