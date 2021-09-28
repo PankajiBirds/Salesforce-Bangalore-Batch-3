@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Parent to Child Relationship" icon-name="custom:custom14">
+        <div class="slds-m-around_large">
+           <c-child-component></c-child-component>
+           <br/>
+           <c-child-component username="Ankit Kumar" user-id="1001"></c-child-component>
+           <br/>
+           <lightning-input type="text" label="User Name" class="forInput"></lightning-input>
+           <lightning-input type="number" label="User Id" class="forInput"></lightning-input>
+           <br/>
+           <lightning-button label="Submit" onclick={handleSubmit}></lightning-button>
+            
+           <hr/>
+           <c-child-component class="childComponent"></c-child-component>
+        </div>
+    </lightning-card>
+</template>
