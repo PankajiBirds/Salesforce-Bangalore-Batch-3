@@ -1,0 +1,41 @@
+<template>
+    <lightning-card title="Navigation Services" icon-name="custom:custom18">
+        <div class="slds-m-around_large">
+            <lightning-layout>
+                <lightning-layout-item>
+                    <lightning-button label="Home Page" onclick={handleHomePage}></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item class="slds-m-left_small">
+                    <lightning-button label="Chatter Page" onclick={handleChatterPage}></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+            <br/>
+            <lightning-layout>
+                <lightning-layout-item>
+                    <lightning-button label="Account List" onclick={handleAccountList}></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item class="slds-m-left_small">
+                    <lightning-button label="New Account" onclick={handleNewAccount}></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item class="slds-m-left_small">
+                    <lightning-button label="Edit Account" onclick={handleEditAccount}></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item class="slds-m-left_small">
+                    <lightning-button label="View Account" onclick={handleViewAccount}></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item class="slds-m-left_small">
+                    <lightning-button label="New Account With Value" onclick={handleNewAccountWithValue}></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+            <br>
+            <lightning-layout>
+                <lightning-layout-item>
+                    <lightning-button label="Open Google" onclick={handleOpenGoogle}></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item class="slds-m-left_small">
+                    <lightning-button label="Open Apex Example" onclick={handleApexExample}></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </lightning-card>
+</template>
