@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Publisher Component" icon-name="custom:custom26">
+        <div class="slds-m-around_large" >
+            <lightning-button label="Send Message" variant="brand" onclick={handleSendMessage}></lightning-button>
+            <br/>
+            <lightning-input label="Enter Username" type="text" class="forInput"></lightning-input>
+            <lightning-input label="Enter Email" type="email" class="forInput"></lightning-input>
+            <lightning-input label="Enter Phone" type="number" class="forInput"></lightning-input>
+            <br/>
+            <lightning-button label="Send User Info" variant="brand" onclick={handleSendUserInfo}></lightning-button>
+            <hr/>
+            <ul>
+                <li><b>First Name : </b>{employeeData.FirstName}</li>
+                <li><b>Last Name : </b>{employeeData.LastName}</li>
+                <li><b>Email : </b>{employeeData.Email}</li>
+                <li><b>Contact : </b>{employeeData.Contact}</li>
+                <li><b>Date of Birth : </b>{employeeData.Dob}</li>
+            </ul>
+        </div>
+    </lightning-card>
+</template>

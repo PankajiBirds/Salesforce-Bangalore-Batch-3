@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="Dynamic Picklist Values" icon-name="custom:custom31">
+        <div class="slds-m-around_large">
+            <lightning-combobox 
+                label="Rating"
+                options={rating}
+            ></lightning-combobox>
+
+            <lightning-combobox
+                label="Type"
+                options={type}
+            ></lightning-combobox>
+
+            <lightning-combobox
+                label="SLA"
+                options={SLA__c}
+            ></lightning-combobox>
+        </div>
+    </lightning-card>
+</template>
