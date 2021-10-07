@@ -1,0 +1,116 @@
+public class SendEmailApexExample {
+
+    public SendEmailApexExample() {
+        
+    }
+    
+    //	to email, subject, plain text body
+    public static void sendEmail1() {
+        Messaging.SingleEmailMessage singleEmailMessage = new Messaging.SingleEmailMessage();
+        List<String> toEmails = new List<String>{'pankaj.g@ibirdsservices.com'};
+        singleEmailMessage.setToAddresses(toEmails);
+        singleEmailMessage.setSubject('Apex Email Example');
+        singleEmailMessage.setPlainTextBody('Hi Admin, \n Please check email');
+        
+        Messaging.SingleEmailMessage[] singleEmailMessages = new Messaging.SingleEmailMessage[]{singleEmailMessage};
+            
+      	Messaging.sendEmail(singleEmailMessages);
+    }
+    
+    //	to email, cc, bcc, html body, reply to, subject
+    public static void sendEmail2() {
+        Messaging.SingleEmailMessage singleEmailMessage = new Messaging.SingleEmailMessage();
+        
+        singleEmailMessage.setToAddresses(new List<String>{'pankaj.g@ibirdsservices.com'});
+        singleEmailMessage.setCcAddresses(new List<String>{'pankajgoyal218@gmail.com'});
+        singleEmailMessage.setBccAddresses(new List<String>{'bhartiankit1998@gmail.com'});
+        
+        singleEmailMessage.setSubject('Apex Email Example With TO CC BCC');
+        
+        singleEmailMessage.setReplyTo('pankajgoyal.ibirdscollege@gmail.com');
+        
+        String message = 'Hello Admin, <br/> please check email. <br/> <b> Thanks </b>';
+        
+        singleEmailMessage.setHtmlBody(message);
+        
+        Messaging.SingleEmailMessage[] singleEmailMessages = new Messaging.SingleEmailMessage[]{singleEmailMessage};
+       
+     	Messaging.SendEmailResult[] result = Messaging.sendEmail(singleEmailMessages);
+        
+        if(result[0].success) {
+            System.debug('Email send successfully');
+        } else {
+            System.debug('Error : ' + result[0].errors[0].message);
+        }        
+    }
+    
+    // sent to contact email, set sender name     
+    public static void sendEmail3() {
+        Contact contact = [Select Id From Contact where Id = '0032v00003mlPbr'];
+        
+        Messaging.SingleEmailMessage singleEmailMessage = new Messaging.SingleEmailMessage();
+                
+        singleEmailMessage.setTargetObjectId(contact.Id);
+        singleEmailMessage.setSubject('Send Email Example With Contact');
+        singleEmailMessage.setSenderDisplayName('iBirds Services');
+        singleEmailMessage.setPlainTextBody('Hi Admin,\nThis is the dummy email example');
+        
+        Messaging.SingleEmailMessage[] singleEmailMessages = new Messaging.SingleEmailMessage[]{singleEmailMessage};
+            
+      	Messaging.SendEmailResult[] result = Messaging.sendEmail(singleEmailMessages);
+        
+        if(result[0].success) {
+            System.debug('Email send successfully');
+        } else {
+            System.debug('Error : ' + result[0].errors[0].message);
+        }
+    }
+    
+    //	With attachment    
+    public static void sendEmail4() {
+        Messaging.SingleEmailMessage singleEmailMessage = new Messaging.SingleEmailMessage();
+        singleEmailMessage.setToAddresses(new List<String>{'pankaj.g@ibirdsservices.com'});
+        singleEmailMessage.setSubject('Apex Email Example With Attachment');
+        singleEmailMessage.setPlainTextBody('Hi Admin,\nPlease find the attachment.');
+
+		Attachment attachment = [Select Id, Name, Body From Attachment Where Id = '00P2v00002Z8261'];
+	   	
+        Messaging.EmailFileAttachment emailFileAttachment = new Messaging.EmailFileAttachment();
+        emailFileAttachment.setBody(attachment.Body);
+        emailFileAttachment.setFileName(attachment.Name);
+        
+        Messaging.EmailFileAttachment[] emailFileAttachments = new Messaging.EmailFileAttachment[]{emailFileAttachment};
+        
+       	singleEmailMessage.setFileAttachments(emailFileAttachments);
+        
+        Messaging.SingleEmailMessage[] singleEmailMessages = new Messaging.SingleEmailMessage[]{singleEmailMessage};
+            
+      	Messaging.SendEmailResult[] results = Messaging.sendEmail(singleEmailMessages);
+        
+        if(results[0].success) {
+            System.debug('Email send successfully');
+        } else {
+            System.debug('Error : ' + results[0].errors[0].message);
+        }
+    }
+    
+    //	00X2v000003HCyh //	0032v00003mlPj7  //  0032v00003mlPbr
+    public static void sendEmail5() {
+     	List<Contact> contactList = [Select Id From Contact Where Id IN('0032v00003mlPbr','0032v00003mlPj7')];
+        EmailTemplate emailTemplate = [Select Id From EmailTemplate Where Id = '00X2v000003HCyh'];
+        
+        Messaging.SingleEmailMessage singleEmailMessage = new Messaging.SingleEmailMessage();
+        singleEmailMessage.setTemplateId(emailTemplate.Id);
+        singleEmailMessage.setTargetObjectId(contactList.get(0).Id);
+        
+        Messaging.SingleEmailMessage[] singleEmailMessages = new Messaging.SingleEmailMessage[]{singleEmailMessage};
+        
+       	Messaging.SendEmailResult[] results = Messaging.sendEmail(singleEmailMessages);
+        
+        if(results[0].success) {
+            System.debug('Email send successfully');
+        } else {
+            System.debug('Error : ' + results[0].errors[0].message);
+        }
+    }
+}
